@@ -21,6 +21,7 @@
     --after-green: #C8E6C9;
     --notice-red-bg: #FFE4E1;
     --notice-red-border: #951818;
+    --fa-color: #212121;
 
     scroll-behavior: smooth;
 }
@@ -37,6 +38,7 @@
         --code: #F06292;
         --notice-red-bg: #951818;
         --notice-red-border: #EFD3CF;
+        --fa-color: #EEE;
     }
 
     ul li {
@@ -368,7 +370,7 @@ img {
 .fa {  
     padding: 10px;
     text-align: center;
-    color: white;
+    color: var(--fa-color);
 }
 
 .fa:hover {  
