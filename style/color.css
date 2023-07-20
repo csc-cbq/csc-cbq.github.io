@@ -1,0 +1,47 @@
+/* Global colour variables */
+:root {
+  --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", Roboto, Noto, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
+  --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+  --bg: #FAFAFA;
+  --header-bg: #212121;
+  --text: #212121;
+  --header-text: #FAFAFA;
+  --link: #0D47A1;
+  --code: #D81B60;
+  --pre: #D0D0D0;
+  --pre-bg: #1A1A1A;
+  --accent: #e6e6e6;
+  --gh-hover: #D3D3D3;
+  --before-blue: #64B5F6;
+  --after-blue: #BBDEFB;
+  --before-orange: #FBC02D;
+  --after-orange: #FFF176;
+  --before-green: #4CAF50;
+  --after-green: #C8E6C9;
+  --notice-red-bg: #FFE4E1;
+  --notice-red-border: #951818;
+  --fa-color: #212121;
+
+  scroll-behavior: smooth;
+}
+
+/* Define colours for auto dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+      --bg: #212121;
+      --header-bg: #111;
+      --text: #EEE;
+      --link: #64B5F6;
+      --accent: #333;
+      --gh-hover: #222;
+      --code: #F06292;
+      --notice-red-bg: #951818;
+      --notice-red-border: #EFD3CF;
+      --fa-color: #EEE;
+  }
+
+  ul li {
+      opacity: .8;
+  }
+}

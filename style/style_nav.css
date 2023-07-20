@@ -1,3 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+header {
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--text);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    padding: 1rem 0 1rem 0;
+    text-align: center;
+}
+
 /* Format navigation */
 nav {
   font-size: 1rem;
@@ -7,9 +27,9 @@ nav {
 }
 
 nav a {
-  border: 1px solid #212121;
+  border: 1px solid var(--text);
   border-radius: 5px;
-  color: #212121 !important;
+  color: var(--text) !important;
   display: inline-block;
   padding: .1rem 1rem;
   margin-right: 1rem;
@@ -19,23 +39,34 @@ nav a {
 
 nav a:hover,
 nav a.current {
-  color: #212121 !important;
-  background: #FAFAFA;
+  color: var(--text) !important;
+  background: var(--accent);
 }
 
 nav a.current:hover {
   text-decoration: none;
 }
 
+header,
+main,
 footer {
-  margin: 0 auto;
-  max-width: 50rem;
-  width: 100%;
-  border-top: 1px solid #212121;
+    margin: 0 auto;
+    max-width: 50rem;
+    width: 100%;
+}
+
+footer {
+  border-top: 1px solid var(--text);
   margin: 3rem auto 0;
   padding: 0.5rem 0 0;
   text-align: center;
   font-size: .9rem;
+}
+
+
+.insta-imgs{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .social-media {
@@ -45,9 +76,30 @@ footer {
 .fa {  
   padding: 10px;
   text-align: center;
-  color: #212121;
+  color: var(--fa-color);
 }
 
 .fa:hover {  
   opacity: 0.5;  
+}
+
+p a {
+  color: var(--text);
+}
+
+.centre {
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 4rem 0 -1.5rem 0;
 }
