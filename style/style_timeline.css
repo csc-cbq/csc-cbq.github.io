@@ -188,16 +188,17 @@ body {
 }
 
 .desc {
-  margin: 1em 0.75em 0 0;
+  margin: 1em 0.75em 1em 0;
   font-size: 0.77777em;
   font-style: italic;
   line-height: 1.5em;
+  /* border-radius: 10px; */
   position: relative;
   z-index: 15;
 }
 
 .direction-r .desc {
-  margin: 1em 0 0 0.75em;
+  margin: 1em 0 1em 0.75em;
 }
 
 /* ================ Timeline Media Queries ================ */
@@ -278,7 +279,7 @@ body {
 
 .desc {
 	position: relative;
-	margin: 1em 0 0 0;
+  margin: 1em 0.75em 1em 0;
 	padding: 1em;
 	background: var(--bg);
 	-webkit-box-shadow: 0 0 1px var(--header-bg);
@@ -291,7 +292,7 @@ body {
 .direction-l .desc,
 .direction-r .desc {
 	position: relative;
-	margin: 1em 1em 0 1em;
+	margin: 1em 0.75em 1em 1em;
 	padding: 1em;
 	
   z-index: 15;
@@ -302,6 +303,6 @@ body {
 
 .direction-l .desc,
 .direction-r .desc {
-	margin: 1em 4em 0 4em;
+	margin: 1em 4em 1em 4em;
 }
 }
