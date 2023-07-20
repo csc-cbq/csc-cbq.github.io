@@ -47,6 +47,26 @@ nav a.current:hover {
   text-decoration: none;
 }
 
+@media (max-width: 768px) {
+  nav {
+    font-size: 0.8rem; /* Reduce the font size to make the text smaller */
+    line-height: 1.7; /* Reduce the line height to make the links more compact */
+    padding: 0.4rem 0; /* Reduce the vertical padding */
+    margin-left: 0.4rem; /* Reduce the left margin */
+  }
+  
+  nav a {
+    border: 1px solid var(--text);
+    border-radius: 5px;
+    color: var(--text) !important;
+    display: inline-block;
+    padding: 0.1rem 0.7rem; /* Reduce the padding to make the links smaller */
+    margin-right: 0.1rem; /* Reduce the right margin */
+    text-decoration: none;
+    transition: 0.4s;
+  }
+}
+
 header,
 main,
 footer {
