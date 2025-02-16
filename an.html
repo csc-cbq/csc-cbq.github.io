@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    <h2>Resgister Form</h2>
+
+    <form id="playerForm" method="post">
+        <input id="Name" placeholder="Enter name" required>
+        <input id="Class" placeholder="Enter class" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- <script type="module" src="app.js"></script> -->
+
+    <script type="module">
+        import { db } from "./firebase.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("playerForm").addEventListener("submit", async (event) => {
+                event.preventDefault(); // Prevent the page from reloading
+
+                const playerName = document.getElementById("Name").value;
+                const playerClass = document.getElementById("Class").value;
+
+                try {
+                    const docRef = await addDoc(collection(db, "players"), {
+                        name: playerName,
+                        class: playerClass,
+                        timestamp: new Date()
+                    });
+
+                    alert(`✅ Registered successfully! Your Player ID: ${docRef.id}`);
+                    document.getElementById("playerForm").reset(); // Clear the form
+                } catch (error) {
+                    console.error("Error adding player: ", error);
+                    alert("❌ Failed to register. Try again!");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
