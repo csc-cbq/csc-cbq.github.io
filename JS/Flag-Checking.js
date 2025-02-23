@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // if
         try {
-            const docRef = await addDoc(collection(db, "players", "Player1",), {
+            const docRef = await addDoc(collection(db, "players"), {
                 flag: playerFlag,
                 timestamp: new Date()
             });
