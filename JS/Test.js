@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 timestamp: new Date()
             });
 
-            alert(`? Submitted!`);
+            alert(`Submitted!`);
             document.getElementById("FlagCf").reset(); // Clear the form
         } else {
-            console.log("? The code wasn't right.");
+            console.log("The code wasn't right.");
         }
     });
 });
