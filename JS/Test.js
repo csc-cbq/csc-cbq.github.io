@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const answer = document.getElementById("code").value;
 
         // if
-        if (answer == ) {
+        try {
             const docRef = await addDoc(collection(db, "players"), {
                 testee: player,
                 level_1: answer,
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             alert(`Submitted!`);
-            document.getElementById("FlagCf").reset(); // Clear the form
-        } else {
-            console.log("The code wasn't right.");
+            //document.getElementById("FlagCf").reset(); // Clear the form
+        } catch (error) {
+            console.log(error);
         }
     });
 });
