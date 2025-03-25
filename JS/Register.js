@@ -1,5 +1,5 @@
 ﻿import { db } from "./firebase.js"; // Import Firestore instance
-https://console.firebase.google.com/u/0/
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 console.log("Firestore is ready:", db);
 
 

@@ -1,25 +1,28 @@
-import { db } from "./firebase.js"; // Import Firestore instance
-https://console.firebase.google.com/u/0/
+﻿import { db } from "./firebase.js"; // Import Firestore instance
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 console.log("Firestore is ready:", db);
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("Form").addEventListener("submit", async (event) => {
-        event.preventDefault(); // Prevent the page from reloading
-        const player = document.getElementById("name").value;
-        const answer = document.getElementById("code").value;
 
-        // if
+//Register
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("pForm").addEventListener("submit", async (event) => {
+        event.preventDefault(); // Stop page refresh
+
+        const playerName = document.getElementById("pName").value;
+        const playerCode = document.getElementById("pCode").value;
+
         try {
             const docRef = await addDoc(collection(db, "players"), {
-                testee: player,
-                level_1: answer,
+                name: playerName,
+                email: playerCode,
                 timestamp: new Date()
             });
 
-            alert(`Submitted!`);
-            //document.getElementById("FlagCf").reset(); // Clear the form
+            alert(`✅ Submitted! Your ID: ${docRef.id}`);
+            document.getElementById("pForm").reset(); // Clear form
         } catch (error) {
-            console.log(error);
+            console.error("Error:", error);
+            alert("❌ Failed to submit. Try again!");
         }
     });
 });
