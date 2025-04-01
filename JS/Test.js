@@ -1,5 +1,5 @@
 ﻿import { db } from "./firebase.js"; // Import Firestore instance
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, addDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 console.log("Firestore is ready:", db);
 
 const validHashes = [
@@ -21,10 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault(); // Stop page refresh
 
         const playerName = document.getElementById("pName").value;
-        const playerCode = hashString(document.getElementById("pCode").value);
+        const playerCode = await hashString(document.getElementById("pCode").value);
 
         if (validHashes.includes(playerCode)) {
-            const docRef = await addDoc(collection(db, "players", playerName), {
+            const docRef = doc(db, "players", playerName); // Use playerName as the document ID
+            await setDoc(docRef, {
                 code: playerCode,
                 timestamp: new Date()
             });
