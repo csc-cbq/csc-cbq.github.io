@@ -3,7 +3,6 @@ import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/fi
 console.log("Firestore is ready:", db);
 
 
-//Register
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pForm").addEventListener("submit", async (event) => {
         event.preventDefault(); // Stop page refresh
@@ -12,9 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const playerCode = document.getElementById("pCode").value;
 
         try {
-            const docRef = await addDoc(collection(db, "players"), {
-                name: playerName,
-                email: playerCode,
+            const docRef = await addDoc(collection(db, "players", playerName), {
+                code: playerCode,
                 timestamp: new Date()
             });
 

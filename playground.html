@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="en-GB">
+<body>
+    <div>
+        <p>LEVEL 1</p>
+        <p>Polyglot file suggests you check its binary.</p>
+        <image src="asserts/img/polyglot.png" width="500" height="500" />
+    </div>
+    
+    <div>
+        <p>LEVEL 2</p>
+        <img src="asserts/img/background.png" id="brokenImage" alt=" Oops!" style="cursor:pointer;"
+             onerror="this.onerror=null; this.src='asserts/img/background.png'; this.setAttribute('data-broken', 'true');">
+
+        <script>
+            document.getElementById("brokenImage").addEventListener("click", function () {
+                if (this.getAttribute("data-broken") === "true") {
+                    window.location.href = '/404.html'; // Redirect to your 404 page
+                }
+            });
+        </script>
+    </div>
+
+    <div>
+        <p>Submit answers here:</p>
+        <form id="pForm">
+            <input type="text" id="pCode" placeholder="Đoạn mã bạn nhận được" required>
+            <input type="text" id="pName" placeholder="Họ và tên" required>
+            <button type="submit">Submit!</button>
+        </form>
+    </div>
+    <script type="module" src="JS/Test.js"></script>
+</body>
+
+</html>
