@@ -4,7 +4,8 @@ console.log("Firestore is ready:", db);
 
 const validHashes = [
     "d211166d3a400d9a02f57c16f7c11b6f4545241e1238cff5136b5c627ac7e590",
-    "c6c3ff5b834b3d535bd865f808479e2911a1fb9d1eeddab0929017eccc1ad816"
+    "c6c3ff5b834b3d535bd865f808479e2911a1fb9d1eeddab0929017eccc1ad816",
+    "f390f016e8dc3cfc4bbad046894397771e121055e5764d7948af1d823887dea4"
 ];
 
 async function hashString(input) {
