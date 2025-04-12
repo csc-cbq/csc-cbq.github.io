@@ -1,5 +1,5 @@
 ﻿import { db } from "./firebase.js"; // Import Firestore instance
-import { collection, addDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 console.log("Firestore is ready:", db);
 
 const validHashes = [
@@ -9,6 +9,7 @@ const validHashes = [
     "ca54cdca8e436ab497cc5dab391f48cf1329d8ce3e4d5821827f7d714b2acba3"
 ];
 
+// Hashing Func
 async function hashString(input) {
     const encoder = new TextEncoder();
     const data = encoder.encode(input);
@@ -22,20 +23,37 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pForm").addEventListener("submit", async (event) => {
         event.preventDefault(); // Stop page refresh
 
+        // Input
         const playerName = document.getElementById("pName").value;
         const playerCode = await hashString(document.getElementById("pCode").value);
 
-        if (validHashes.includes(playerCode)) {
-            const docRef = doc(db, "players", playerName); // Use playerName as the document ID
-            await setDoc(docRef, {
-                code: playerCode,
-                timestamp: new Date()
-            });
+        // Player Collection
+        const playerRef = doc(db, "players", playerName);
+        const flagCoRef = collection(playerRef, "flag_collection"); 
 
-            alert(`✅ Submitted! Your ID: ${docRef.id}`);
-            document.getElementById("pForm").reset(); // Clear form
+        // Check if the playerCode already exists in the flag collection
+        const q = query(flagCoRef, where("code", "==", playerCode));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            alert("❌ You have already submitted this flag!");
         } else {
-            alert("❌ Failed to submit. Try again!");
+            if (validHashes.includes(playerCode)) {
+                
+                const docRef = await addDoc(flagCoRef, {
+                    code: playerCode,
+                    timestamp: new Date()
+                }, { merge: true });
+
+                await updateDoc(playerRef, {
+                    flagCount: increment(1)
+                });
+
+                alert(`✅ Submitted! Your ID: ${docRef.id}`);
+                document.getElementById("pForm").reset(); // Clear form
+            } else {
+                alert("❌ Failed to submit. Try again!");
+            }
         }
     });
 });
