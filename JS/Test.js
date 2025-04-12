@@ -1,5 +1,5 @@
 ﻿import { db } from "./firebase.js"; // Import Firestore instance
-import { increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 console.log("Firestore is ready:", db);
 
 const validHashes = [
@@ -39,15 +39,25 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("❌ You have already submitted this flag!");
         } else {
             if (validHashes.includes(playerCode)) {
-                
+
+                // Flag field
                 const docRef = await addDoc(flagCoRef, {
                     code: playerCode,
                     timestamp: new Date()
                 }, { merge: true });
 
-                await updateDoc(playerRef, {
-                    flagCount: increment(1)
-                });
+                // Counting
+                const docSnap = await getDoc(playerRef);
+                if (docSnap.exists()) {
+                    await updateDoc(playerRef, {
+                        flagCount: increment(1)
+                    });
+                } else {
+                    await setDoc(playerRef, {
+                        flagCount: 1
+                    });
+                }
+            
 
                 alert(`✅ Submitted! Your ID: ${docRef.id}`);
                 document.getElementById("pForm").reset(); // Clear form
