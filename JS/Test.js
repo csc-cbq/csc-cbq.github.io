@@ -1,4 +1,5 @@
-﻿import { db, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "./firebase.js"; // Import Firestore instance
+﻿import { db, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "./firebase.js";
+import { auth } from "./firebase.js";
 console.log("Firestore is ready:", db);
 
 const validHashes = [
@@ -23,11 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault(); // Stop page refresh
 
         // Input
-        const playerName = document.getElementById("pName").value;
+        const user = auth.currentUser;
         const playerCode = await hashString(document.getElementById("pCode").value);
 
         // Player Collection
-        const playerRef = doc(db, "players", playerName);
+        const playerRef = doc(db, "players", user.displayName);
         const flagCoRef = collection(playerRef, "flag_collection"); 
 
         // Check if the playerCode already exists in the flag collection
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             
 
-                alert(`✅ Submitted! Your ID: ${docRef.id}`);
+                alert(`✅ Submitted!`);
                 document.getElementById("pForm").reset(); // Clear form
             } else {
                 alert("❌ Failed to submit. Try again!");
