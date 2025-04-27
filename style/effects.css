@@ -3,17 +3,18 @@
 .glow {
     font-weight: bold;
     text-align: center;
-    color: #ffff;
-    animation: glow 1000000s;
+    color: #fff; /* Text color */
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+
 }
 
 @keyframes glow {
     0% {
-        text-shadow: 0 0 1px #000, 0 0 5px #000;
+        text-shadow: 0 0 10px #000, 0 0 20px #000;
     }
 
     100% {
-        text-shadow: 0 0 1px #808080, 0 0 10px #fff;
+        text-shadow: 0 0 10px #808080, 0 0 20px #fff;
     }
 }
 
@@ -24,10 +25,8 @@
     font-family: "Silkscreen", sans-serif;
     font-size: 5rem;
     text-align: center;
-    animation: glow infinite;
 }
 
 #playground-header {
     text-align: center;
-    animation: glow infinite;
 }
