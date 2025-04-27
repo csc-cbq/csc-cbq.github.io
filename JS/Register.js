@@ -9,8 +9,6 @@ onAuthStateChanged(auth, (user) => {
         loginBtn.onclick = () => {
             signOut(auth).then(() => {
                 loginBtn.textContent = "Login";
-                // Không cần reload nếu cập nhật UI đủ tốt
-                // location.reload();
             });
         };
     } else {
