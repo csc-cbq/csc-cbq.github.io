@@ -47,7 +47,8 @@ async function submitFlag(user) {
             const docSnap = await getDoc(playerRef);
             if (docSnap.exists()) {
                 await updateDoc(playerRef, {
-                    flagCount: increment(1)
+                    flagCount: increment(1),
+                    timestamp: new Date()
                 });
             } else {
                 await setDoc(playerRef, {
