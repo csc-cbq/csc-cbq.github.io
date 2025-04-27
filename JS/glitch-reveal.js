@@ -17,9 +17,7 @@ function decryptText(element, finalText, speed = 50) {
 
         if (iterations >= finalText.length) {
             clearInterval(interval);
-            setTimeout(() => {
-                decryptText(element, finalText, speed); // Restart glitch reveal after it's finished
-            }, 500); // Delay before the loop restarts
+
         }
 
         iterations += 1 / 10; // Adjust speed of fixing characters
@@ -31,8 +29,8 @@ const playgroundHeader = document.getElementById("playground-h1");
 // Welcome line according to login state
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        decryptText(playgroundHeader, `Welcome, ${user.displayName || "User"}`);
+        decryptText(playgroundHeader, `Welcome, ${user.displayName || "User"}!`);
     } else {
-        decryptText(playgroundHeader, "Playground");
+        decryptText(playgroundHeader, "Welcome, Guest!");
     }
 });
