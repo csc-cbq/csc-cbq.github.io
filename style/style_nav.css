@@ -8,8 +8,8 @@ html {
 }
 
 header {
-  padding-bottom: 2.5rem;
-  border-bottom: 2px solid var(--text);
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--text);
 }
 
 header h1 {
