@@ -2,6 +2,7 @@
 import { auth } from "./firebase.js";
 console.log("Firestore is ready:", db);
 
+// All valid Hashes
 const validHashes = [
     "d211166d3a400d9a02f57c16f7c11b6f4545241e1238cff5136b5c627ac7e590",
     "c6c3ff5b834b3d535bd865f808479e2911a1fb9d1eeddab0929017eccc1ad816",
@@ -9,7 +10,7 @@ const validHashes = [
     "ca54cdca8e436ab497cc5dab391f48cf1329d8ce3e4d5821827f7d714b2acba3"
 ];
 
-// Hashing Func
+// Hashing Function
 async function hashString(input) {
     const encoder = new TextEncoder();
     const data = encoder.encode(input);
@@ -19,6 +20,7 @@ async function hashString(input) {
     return hashHex;
 }
 
+// Main Function
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pForm").addEventListener("submit", async (event) => {
         event.preventDefault(); // Stop page refresh
