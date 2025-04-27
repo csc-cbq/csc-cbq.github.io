@@ -1,5 +1,5 @@
 ﻿import { db, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "./firebase.js";
-import { auth } from "./firebase.js";
+import { auth, signInWithPopup, provider } from "./firebase.js";
 console.log("Firestore is ready:", db);
 
 // All valid Hashes
@@ -20,52 +20,76 @@ async function hashString(input) {
     return hashHex;
 }
 
-// Main Function
+// Submit-flag Function
+async function submitFlag(user) {
+    const playerCode = await hashString(document.getElementById("pCode").value);
+
+    // Player Collection
+    const playerRef = doc(db, "players", user.displayName);
+    const flagCoRef = collection(playerRef, "flag_collection");
+
+    // Check if the playerCode already exists in the flag collection
+    const q = query(flagCoRef, where("code", "==", playerCode));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+        alert("❌ You have already submitted this flag!");
+    } else {
+        if (validHashes.includes(playerCode)) {
+
+            // Flag field
+            const docRef = await addDoc(flagCoRef, {
+                code: playerCode,
+                timestamp: new Date()
+            }, { merge: true });
+
+            // Counting
+            const docSnap = await getDoc(playerRef);
+            if (docSnap.exists()) {
+                await updateDoc(playerRef, {
+                    flagCount: increment(1)
+                });
+            } else {
+                await setDoc(playerRef, {
+                    flagCount: 1
+                });
+            }
+
+
+            alert(`✅ Submitted!`);
+            document.getElementById("pForm").reset(); // Clear form
+        } else {
+            alert("❌ Failed to submit. Try again!");
+        }
+    }
+};
+
+// Main execution
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pForm").addEventListener("submit", async (event) => {
         event.preventDefault(); // Stop page refresh
 
-        // Input
         const user = auth.currentUser;
-        const playerCode = await hashString(document.getElementById("pCode").value);
 
-        // Player Collection
-        const playerRef = doc(db, "players", user.displayName);
-        const flagCoRef = collection(playerRef, "flag_collection"); 
+        if (!user) {
+            // If not logged in, prompt login via popup
+            alert("Please Sign in to proceed!")
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
 
-        // Check if the playerCode already exists in the flag collection
-        const q = query(flagCoRef, where("code", "==", playerCode));
-        const querySnapshot = await getDocs(q);
+                // Proceed with flag submission after successful login
+                submitFlag(user);
 
-        if (!querySnapshot.empty) {
-            alert("❌ You have already submitted this flag!");
-        } else {
-            if (validHashes.includes(playerCode)) {
-
-                // Flag field
-                const docRef = await addDoc(flagCoRef, {
-                    code: playerCode,
-                    timestamp: new Date()
-                }, { merge: true });
-
-                // Counting
-                const docSnap = await getDoc(playerRef);
-                if (docSnap.exists()) {
-                    await updateDoc(playerRef, {
-                        flagCount: increment(1)
-                    });
-                } else {
-                    await setDoc(playerRef, {
-                        flagCount: 1
-                    });
-                }
-            
-
-                alert(`✅ Submitted!`);
-                document.getElementById("pForm").reset(); // Clear form
-            } else {
-                alert("❌ Failed to submit. Try again!");
+            } catch (error) {
+                console.error("❌ Error signing in:", error);
             }
+        } else {
+            // If already logged in, proceed with flag submission
+            submitFlag(user);
         }
     });
 });
+
+
+
