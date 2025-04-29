@@ -1,6 +1,6 @@
 import { auth, onAuthStateChanged } from "./firebase.js"; // Import Firebase authentication
 // Glitch reveal
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ";
 
 function decryptText(element, finalText, speed = 50) {
     let iterations = 0;
@@ -19,7 +19,7 @@ function decryptText(element, finalText, speed = 50) {
             clearInterval(interval);
         }
 
-        iterations += 1 / 10; // Adjust speed of fixing characters
+        iterations += 1 / 20; // Adjust speed of fixing characters
     }, speed);
 }
 
