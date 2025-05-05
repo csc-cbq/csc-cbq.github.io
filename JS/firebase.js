@@ -26,8 +26,17 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+// Exposing functions for web exploitation
+window.app = app;
+window.db = db;
+window.auth = auth;
+window.collection = collection;
+window.getDocs = getDocs;
+window.doc = doc;
+window.query = query;
+window.where = where;
 
-// Export Firestore and Authentication
+// Export
 export { signOut, auth, onAuthStateChanged, signInWithPopup, provider };
 export {
     db, getDoc, increment, updateDoc, collection, addDoc,
