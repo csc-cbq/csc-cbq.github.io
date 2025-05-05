@@ -13,11 +13,14 @@ async function loadLeaderboard() {
     let rank = 1;
     querySnapshot.forEach((doc) => {
         const data = doc.data();
-
+        let name = data.Name
+        if (name === "Sơn Nguyễn") {
+            name = `${data.Name} (Admin)`
+        }
         const row = document.createElement("tr");
         row.innerHTML = `
         <th>${rank++}</th>
-        <th>${data.Name}</th>
+        <th>${name}</th>
         <th>${data.flagCount || 0}</th>
         `;
         tbody.appendChild(row);
