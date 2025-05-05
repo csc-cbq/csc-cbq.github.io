@@ -4,7 +4,7 @@
 async function loadLeaderboard() {
 
     const playersRef = collection(db, "players");
-    const q = query(playersRef, orderBy("flagCount", "desc"), orderBy("timestamp", "desc")); // top 20
+    const q = query(playersRef, orderBy("flagCount", "desc"), orderBy("timestamp", "desc")); 
     const querySnapshot = await getDocs(q);
 
     const tbody = document.querySelector("#leaderboard tbody");
@@ -12,13 +12,12 @@ async function loadLeaderboard() {
 
     let rank = 1;
     querySnapshot.forEach((doc) => {
-        const player = doc.id;
         const data = doc.data();
 
         const row = document.createElement("tr");
         row.innerHTML = `
         <th>${rank++}</th>
-        <th>${player}</th>
+        <th>${data.Name}</th>
         <th>${data.flagCount || 0}</th>
         `;
         tbody.appendChild(row);
