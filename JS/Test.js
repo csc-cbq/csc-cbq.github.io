@@ -1,6 +1,8 @@
-﻿import { db, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "./firebase.js";
+﻿import {
+    db, getDoc, increment, updateDoc, collection,
+    addDoc, doc, setDoc, query, where, getDocs
+} from "./firebase.js";
 import { auth, signInWithPopup, provider } from "./firebase.js";
-console.log("Firestore is ready:", db);
 
 // All valid Hashes
 const validHashes = [
@@ -27,7 +29,7 @@ async function submitFlag(user) {
     const playerCode = await hashString(document.getElementById("pCode").value);
 
     // Player Collection
-    const playerRef = doc(db, "players", user.displayName);
+    const playerRef = doc(db, "players", user.uid);
     const flagCoRef = collection(playerRef, "flag_collection");
 
     // Check if the playerCode already exists in the flag collection
@@ -41,6 +43,7 @@ async function submitFlag(user) {
 
             // Flag field
             const docRef = await addDoc(flagCoRef, {
+
                 code: playerCode,
                 timestamp: new Date()
             }, { merge: true });
@@ -49,12 +52,15 @@ async function submitFlag(user) {
             const docSnap = await getDoc(playerRef);
             if (docSnap.exists()) {
                 await updateDoc(playerRef, {
+                    Name: user.displayName,
                     flagCount: increment(1),
-                    timestamp: new Date()
+                    timestamp: new Date(),
                 });
             } else {
                 await setDoc(playerRef, {
-                    flagCount: 1
+                    Name: user.displayName,
+                    flagCount: 1,
+                    timestamp: new Date(),
                 });
             }
 
@@ -73,8 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pForm").addEventListener("submit", async (event) => {
         event.preventDefault(); // Stop page refresh
 
-        user = auth.currentUser;
-
+        const user = auth.currentUser;
         if (!user) {
             // If not logged in, prompt login via popup
             alert("Please Sign in to proceed!")
