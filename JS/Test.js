@@ -2,7 +2,8 @@
     db, getDoc, increment, updateDoc, collection,
     addDoc, doc, setDoc, query, where, getDocs
 } from "./firebase.js";
-import { auth, signInWithPopup, provider } from "./firebase.js";
+import { auth, signInWithPopup, provider, onAuthStateChanged } from "./firebase.js";
+
 
 // All valid Hashes
 const validHashes = [
@@ -39,16 +40,19 @@ async function submitFlag(user) {
     if (!querySnapshot.empty) {
         alert("❌ You have already submitted this flag!");
     } else {
-        if (validHashes.includes(playerCode)) {
+        try {
+            if (!validHashes.includes(playerCode)) {
+                alert("❌ Invalid code. Try again!");
+                return;
+            }
 
-            // Flag field
+            // Adding the flag into flag_collection 
             const docRef = await addDoc(flagCoRef, {
-
                 code: playerCode,
                 timestamp: new Date()
-            }, { merge: true });
+            });
 
-            // Counting
+            // Counting flags
             const docSnap = await getDoc(playerRef);
             if (docSnap.exists()) {
                 await updateDoc(playerRef, {
@@ -56,7 +60,7 @@ async function submitFlag(user) {
                     flagCount: increment(1),
                     timestamp: new Date(),
                 });
-            } else {
+            } else { // In case flagCount field didn't exist
                 await setDoc(playerRef, {
                     Name: user.displayName,
                     flagCount: 1,
@@ -64,39 +68,37 @@ async function submitFlag(user) {
                 });
             }
 
-
-            alert(`✅ Submitted!`);
+            alert("✅ Submitted!");
             document.getElementById("pForm").reset(); // Clear form
-        } else {
-            alert("❌ Failed to submit. Try again!");
+
+        } catch (error) { // Catching unexpected error
+            console.error("❌ Submission failed:", error);
+            alert(`⚠️ An error occurred during submission:\n${error.message}`);
         }
     }
 };
 
 // Main execution
-
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pForm").addEventListener("submit", async (event) => {
         event.preventDefault(); // Stop page refresh
 
-        const user = auth.currentUser;
-        if (!user) {
-            // If not logged in, prompt login via popup
-            alert("Please Sign in to proceed!")
-            try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-
-                // Proceed with flag submission after successful login
-                submitFlag(user);
-
-            } catch (error) {
-                console.error("❌ Error signing in:", error);
+        let user = auth.currentUser
+        console.log(user)
+        onAuthStateChanged(auth, async (fuser) => {
+            if (fuser) {
+                console.log("✅ Logged in as:", fuser.uid);
+                submitFlag(fuser); // or do anything that needs UID here
+            } else {
+                alert("Please sign in to proceed!");
+                try {
+                    const result = await signInWithPopup(auth, provider);
+                    submitFlag(result.user); // this guarantees result.user is non-null
+                } catch (err) {
+                    console.error("❌ Sign-in failed:", err);
+                }
             }
-        } else {
-            // If already logged in, proceed with flag submission
-            submitFlag(user);
-        }
+        });
     });
 });
 
