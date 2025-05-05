@@ -1,5 +1,8 @@
 ﻿import { db, collection, getDocs, query, orderBy, limit } from "./firebase.js";
 
+const admin = [
+"Sơn Nguyễn",
+]
 
 async function loadLeaderboard() {
 
@@ -10,12 +13,15 @@ async function loadLeaderboard() {
     const tbody = document.querySelector("#leaderboard tbody");
     tbody.innerHTML = ""; // clear table
 
-    let rank = 1;
+    
     querySnapshot.forEach((doc) => {
         const data = doc.data();
         let name = data.Name
-        if (name === "Sơn Nguyễn") {
+        let rank = 1;
+
+        if (admin.include(name)) {
             name = `${data.Name} (Admin)`
+            rank = 0
         }
         const row = document.createElement("tr");
         row.innerHTML = `
