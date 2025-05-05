@@ -19,7 +19,7 @@ async function loadLeaderboard() {
         let name = data.Name
         let rank = 1;
 
-        if (admin.include(name)) {
+        if (admin.includes(name)) {
             name = `${data.Name} (Admin)`
             rank = 0
         }
