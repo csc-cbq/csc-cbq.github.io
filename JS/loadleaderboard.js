@@ -11,7 +11,7 @@ const admin = [
 async function loadLeaderboard() {
 
 	const playersRef = collection(db, "players");
-	const q = query(playersRef, orderBy("flagCount", "desc"), orderBy("timestamp", "desc")); 
+	const q = query(playersRef, orderBy("flagCount", "desc"), orderBy("timestamp", "asc")); 
 	const querySnapshot = await getDocs(q);
 
 	const tbody = document.querySelector("#leaderboard tbody");
