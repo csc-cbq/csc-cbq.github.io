@@ -1,5 +1,8 @@
 ﻿import { db, collection, getDocs, query, orderBy, limit } from "./firebase.js";
 
+// Initialization
+let rank = 1;
+
 // Admin's ID list
 const admin = [
 	"jUfXLiPKZIbgQmmdmWMzFcGh5fw2",
@@ -19,22 +22,26 @@ async function loadLeaderboard() {
 		const data = doc.data();
 		const docid = doc.id;
 		let name = data.Name;
-		let rank = 1;
+		
+		const row = document.createElement("tr");
 
 		// If user (document) is admin
 		if (admin.includes(docid)) {
 			name = `${data.Name} (Admin)`;
-			rank = 0;
+			row.innerHTML = `
+			<th></th>
+			<th>${name}</th>
+			<th>${data.flagCount || 0}</th>
+			`;
+			tbody.appendChild(row);
+		} else { // Adding entries into the table 
+			row.innerHTML = `
+			<th>${rank++}</th>
+			<th>${name}</th>
+			<th>${data.flagCount || 0}</th>
+			`;
+			tbody.appendChild(row);
 		}
-
-		// Adding entries into the table
-		const row = document.createElement("tr");
-		row.innerHTML = `
-		<th>${rank++}</th>
-		<th>${name}</th>
-		<th>${data.flagCount || 0}</th>
-		`;
-		tbody.appendChild(row);
 	});
 }
 
