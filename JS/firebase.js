@@ -1,7 +1,7 @@
 // Firebase SDK (for GitHub Pages)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getFirestore, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { orderBy, limit, getFirestore, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 
@@ -26,4 +26,4 @@ const provider = new GoogleAuthProvider();
 
 // Export Firestore and Authentication
 export { signOut, auth, onAuthStateChanged, signInWithPopup, provider };
-export { db, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs };
+export { db, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs, orderBy, limit };

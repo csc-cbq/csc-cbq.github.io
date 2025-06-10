@@ -2,50 +2,61 @@
 <html lang="en-GB">
 
 <head>
-    <script type="module" src="JS/Register.js"></script>
+	<script type="module" src="JS/Register.js"></script>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAO BA QUAT SOFTWARE CLUB</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/style_nav.css">
-    <link rel="stylesheet" href="style/color.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/png" href="asserts/img/favicon.png" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CAO BA QUAT SOFTWARE CLUB</title>
+	<link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="style/style_nav.css">
+	<link rel="stylesheet" href="style/color.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="asserts/img/favicon.png" />
 </head>
 
 <body>
-    <a name="top"></a>
-    <header>
-        <nav>
-            <a href="/" class="current">Trang chủ</a>
-            <!-- <a href="/faq.html" >FAQ</a> -->
-            <a href="timeline.html">Timeline</a>
-            <a href="Leaderboard.html">Leaderboard</a>
-            <a target="_blank" href="https://docs.google.com/document/d/1A5Pi5owYCUh_XWoLyTgkWcFLn8jkvNDUAUGwW40l-q0/edit?usp=sharing">Nội quy</a>
-            <button id="login-btn">Login</button>
-        </nav>
+	<a name="top"></a>
+	<header>
+		<nav>
+			<a href="/">Trang chủ</a>
+			<!-- <a href="/faq.html" >FAQ</a> -->
+			<a href="timeline.html">Timeline</a>
+			<a href="Leaderboard.html" class="current">Leaderboard</a>
+			<a target="_blank" href="https://docs.google.com/document/d/1A5Pi5owYCUh_XWoLyTgkWcFLn8jkvNDUAUGwW40l-q0/edit?usp=sharing">Nội quy</a>
+			<button id="login-btn">Login</button>
+		</nav>
 
-        <h1>Leaderboard</h1>
-    </header>
+		<h1>🏆 Leaderboard</h1>
+	</header>
 
-    <main>
+	<main>
+		<h2></h2>
+		<br />
+		<br />
+		<div>
+			<table class="leaderboard-terminal" id="leaderboard">
+				<thead>
+					<tr><th>Rank</th><th>Player</th><th>Flags</th></tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<script type="module" src="JS/loadleaderboard.js"></script>
+		</div>
+	</main>
 
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Cao Ba Quat SOFTWARE Club</p>
-        <p>Code khó ư, gia nhập CSC ngay!</p>
-        <p>
-            <b>Liên hệ: </b><a href="mailto:caobaquatsoftwareclub@gmail.com">caobaquatsoftwareclub@gmail.com</a>
-            <div class="social-media">
-                <a target="_blank" href="https://facebook.com/csc.cbq"><i class="fa fa-facebook"></i></a>
-                <a target="_blank" href="https://instagram.com/csc.cbq"><i class="fa fa-instagram"></i></a>
-                <a target="_blank" href="https://github.com/csc-cbq"><i class="fa fa-github"></i></a>
-                <br>
-            </div>
-        <p><a href="#top" class="centre">Top</a></p>
-    </footer>
+	<footer>
+		<p>&copy; 2023 Cao Ba Quat SOFTWARE Club</p>
+		<p>Code khó ư, gia nhập CSC ngay!</p>
+		<p>
+			<b>Liên hệ: </b><a href="mailto:caobaquatsoftwareclub@gmail.com">caobaquatsoftwareclub@gmail.com</a>
+			<div class="social-media">
+				<a target="_blank" href="https://facebook.com/csc.cbq"><i class="fa fa-facebook"></i></a>
+				<a target="_blank" href="https://instagram.com/csc.cbq"><i class="fa fa-instagram"></i></a>
+				<a target="_blank" href="https://github.com/csc-cbq"><i class="fa fa-github"></i></a>
+				<br>
+			</div>
+		<p><a href="#top" class="centre">Top</a></p>
+	</footer>
 </body>
 
 </html>

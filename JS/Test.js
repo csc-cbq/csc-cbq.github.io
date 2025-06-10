@@ -68,11 +68,12 @@ async function submitFlag(user) {
 };
 
 // Main execution
+
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pForm").addEventListener("submit", async (event) => {
         event.preventDefault(); // Stop page refresh
 
-        const user = auth.currentUser;
+        user = auth.currentUser;
 
         if (!user) {
             // If not logged in, prompt login via popup
@@ -94,5 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
+// Export
+export { auth }
 
