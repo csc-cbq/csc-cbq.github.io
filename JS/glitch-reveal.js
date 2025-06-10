@@ -17,7 +17,6 @@ function decryptText(element, finalText, speed = 50) {
 
         if (iterations >= finalText.length) {
             clearInterval(interval);
-
         }
 
         iterations += 1 / 10; // Adjust speed of fixing characters
