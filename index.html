@@ -3,7 +3,7 @@
 
 <head>
 	<script type="module" src="JS/Register.js"></script>
-
+	<script type="module" src="JS/base.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>CAO BA QUAT SOFTWARE CLUB</title>
@@ -17,12 +17,16 @@
 <body>
 	<a name="top"></a>
 	<header>
-		<nav>
-			<a href="/" class="current">Trang chủ</a>
-			<!-- <a href="/faq.html" >FAQ</a> -->
-			<a href="timeline.html">Timeline</a>
-			<a href="Leaderboard.html">Leaderboard</a>
-			<a target="_blank" href="https://docs.google.com/document/d/1A5Pi5owYCUh_XWoLyTgkWcFLn8jkvNDUAUGwW40l-q0/edit?usp=sharing">Nội quy</a>
+		<nav class="navbar" id="navbar">
+			<button class="toggle-btn" type="button">☰</button>
+			<div id="nav-overlay"></div>
+			<div id="nav-overlay"></div>
+			<ul class="nav-links" id="navLinks">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="timeline.html">Timeline</a></li>
+				<li><a href="Leaderboard.html">Leaderboard</a></li>
+				<li><a href="https://docs.google.com/document/d/1A5Pi5owYCUh_XWoLyTgkWcFLn8jkvNDUAUGwW40l-q0/edit?usp=sharing">Nội quy</a></li>
+			</ul>
 			<button id="login-btn">Login</button>
 		</nav>
 

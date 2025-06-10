@@ -161,7 +161,8 @@ button[type=submit]:hover {
 	text-decoration: none;
 	transition: .4s;
 	float: right;
-	font-size: 1rem
+	font-size: 1.2rem;
+	font-family: 'Courier New', monospace;
 }
 
 #login-btn:hover{
@@ -240,6 +241,18 @@ login-btn.current {
 		text-decoration: none;
 		transition: 0.4s;
 		font-size: 1rem
+	}
+	.nav-links {
+		display: none;
+		flex-direction: row;
+		width: 100%;
+		background: inherit;
+		padding: 10px 0;
+	}
+
+	.nav-links.show {
+		display: flex;
+		position: absolute;
 	}
 }
 
