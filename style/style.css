@@ -11,9 +11,14 @@ main {
     margin-top: 3rem;
 }
 
-.small {
-    font-size: .9rem;
+input {
+	width: 50%;
+	padding: 12px 10px;
+	margin: 8px 0;
+	box-sizing: border-box;
 }
+
+
 
 .medium {
     font-weight: bold;
@@ -226,9 +231,61 @@ img {
     background-color: var(--accent);
     margin: 3rem 0;
     text-align: center;
+	word-wrap: break-word; /* Break long words into multiple lines */
+	overflow-wrap: break-word; /* Ensure wrapping of long words */
+
+	max-width: 100%; /* Ensure it doesn't overflow */
+	box-sizing: border-box; /* Ensure padding and border are considered in width */
 }
 
 /* section two */
 .section-two{
     margin: 40px 0;
+}
+
+#f-img-1:hover,
+#f-img-2:hover,
+#f-img-3:hover,
+#f-img-4:hover {
+	transform: scale(1.05); /* zoom-in effect */
+	transition: 0.4s;
+}
+
+/* zoom-in on mobile */
+#f-img-1:active,
+#f-img-2:active,
+#f-img-3:active,
+#f-img-4:active {
+	transform: scale(1.2);
+	transition: 0.1s; 
+}
+
+
+/* Leaderboard */
+.leaderboard-terminal {
+	background-color: #000000;
+	color: #04AA6D; /* Bright green text */
+	font-family: 'Courier New', monospace;
+	padding: 1rem;
+	border: 2px solid #04AA6D;
+	border-radius: 8px;
+	max-width: 600px;
+	margin: auto;
+	white-space: pre-line;
+}
+
+#leaderboard {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 5rem;
+}
+
+#leaderboard th, #leaderboard td {
+	border: 1px solid #04AA6D;
+	padding: 8px;
+	text-align: center;
+}
+
+#leaderboard th {
+	background-color: #333;
 }

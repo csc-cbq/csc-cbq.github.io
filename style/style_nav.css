@@ -1,3 +1,4 @@
+﻿
 * {
   box-sizing: border-box;
 }
@@ -14,12 +15,58 @@ header {
 header h1 {
     margin: 0;
     font-size: 3rem;
-    padding: 1rem 0 1rem 0;
+	padding: 3rem 0 1rem 0;
     text-align: center;
+	word-wrap: break-word; /* Break long words into multiple lines */
+    overflow-wrap: break-word; /* Ensure wrapping of long words */
 }
 
+
 /* Format navigation */
+
+.toggle-btn {
+	display: flex;
+	background: none;
+	border: none;
+	font-size: 1.5em;
+	color: white;
+	float: left;
+	z-index: 1001;
+	position: absolute;
+}
+
+.nav-links {
+	display: none;
+	flex-direction: row;
+	background: inherit;
+	padding: 10px 0;
+	float: left;
+	position: absolute;
+	z-index: 1001;
+}
+
+.nav-links.show {
+	display: flex;
+	position: absolute;
+}
+
+#nav-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #000000e1;
+	display: none;
+}
+
+#nav-overlay.show {
+	display: flex;
+	z-index:1000;
+}
+
 nav {
+	width: 100%;
   font-size: 1rem;
   line-height: 2;
   padding: 1rem 0;
@@ -31,13 +78,11 @@ nav a {
   border-radius: 5px;
   color: var(--text) !important;
   display: inline-block;
-  padding: .1rem 1rem;
   margin-right: 1rem;
   text-decoration: none;
   transition: .4s;
 }
 
-nav a:hover,
 nav a.current {
   color: var(--text) !important;
   background: var(--accent);
@@ -45,6 +90,45 @@ nav a.current {
 
 nav a.current:hover {
   text-decoration: none;
+}
+
+button[type=submit] {
+	background-color: #04AA6D;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button[type=submit]:hover {
+	background-color: #45a049;
+}
+
+#login-btn {
+	background-color: #04AA6D;
+	color: white;
+	border: .1rem solid var(--text);
+	border-radius: 5px;
+	display: inline-block;
+	padding: .55rem 1.5rem;
+	margin-right: 0.04rem;
+	text-decoration: none;
+	transition: .4s;
+	float: right;
+	font-size: 1.2rem;
+	font-family: 'Courier New', monospace;
+}
+
+#login-btn:hover{
+	background-color: #45a049;
+	font-size: 1.1rem;
+	color: var(--text) !important;
+} 
+login-btn.current {
+	background-color: #45a049;
+	font-size: 1.05rem;
+	color: var(--text) !important;
 }
 
 @media (max-width: 768px) {
@@ -65,6 +149,36 @@ nav a.current:hover {
     text-decoration: none;
     transition: 0.4s;
   }
+
+	.nav-links:hover {
+		color: var(--text) !important;
+		background: var(--accent);
+		padding: .1rem 1.1rem;
+	}
+
+	#login-btn {
+		border: 0.07rem solid var(--text);
+		border-radius: 5px;
+		color: var(--text) !important;
+		display: inline-block;
+		padding: 0.19rem 0.8rem; /* Reduce the padding to make the links smaller */
+		margin-right: 1rem; /* Reduce the right margin */
+		text-decoration: none;
+		transition: 0.4s;
+		font-size: 1rem
+	}
+	.nav-links {
+		display: none;
+		flex-direction: row;
+		width: 100%;
+		background: inherit;
+		padding: 10px 0;
+}
+
+	.nav-links.show {
+		display: flex;
+		position: absolute;
+	}
 }
 
 header,
@@ -121,5 +235,4 @@ h6 {
 }
 
 h2 {
-  margin: 4rem 0 -1.5rem 0;
 }
