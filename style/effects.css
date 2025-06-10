@@ -1,11 +1,10 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
+﻿
 /* Effects */
 .glow {
     font-weight: bold;
     text-align: center;
     color: #ffff;
-    animation: glow 100s infinite alternate;
+    animation: glow 2s;
 }
 
 @keyframes glow {
@@ -14,69 +13,70 @@
     }
 
     100% {
-        text-shadow: 0 0 10px #63b3ed, 0 0 20px #63b3ed;
+        text-shadow: 0 0 1px #808080, 0 0 5px #808080;
     }
 }
 
 @keyframes Flicker {
-    13% {
-        opacity: 0.3;
+    10% {
+        opacity: 0.5;
         text-shadow: none;
     }
 
     35% {
         opacity: 0.5;
-        text-shadow: 0 0 5px #4ff, 0 0 10px #4fd1c5;
+        text-shadow: none;
     }
 
     45% {
         opacity: 0.8;
-        text-shadow: 0 0 6px #fff, 0 0 12px #4fd1c5;
+        text-shadow: 0 0 6px #ffff, 0 0 12px #ffff;
     }
 
     50% {
-        opacity: 0.6;
-        text-shadow: 0 0 2px #4fd1c5, 0 0 5px #4fd1c5;
+        opacity: 0.5;
+        text-shadow: none;
     }
 
     55% {
-        opacity: 0.4;
-        text-shadow: 0 0 1px #fff, 0 0 2px #4fd1c5;
+        opacity: 0.8;
+        text-shadow: 0 0 1px #ffff, 0 0 2px #ffff;
     }
 
-    60% {
-        opacity: 1;
-        text-shadow: 0 0 8px #fff, 0 0 18px #4fd1c5;
+    65% {
+        opacity: 0.5;
+        text-shadow: none;
     }
 
     70% {
-        opacity: 0.3;
-        text-shadow: 0 0 4px #fff;
+        opacity: 0.8;
+        text-shadow: 0 0 2px #ffff;
     }
 
-
-    80% {
-        opacity: 1;
-        text-shadow: 0 0 10px #4ff, 0 0 20px #4fd1c5;
-    }
 
     85% {
-        opacity: 1;
-        text-shadow: 0 0 2px #4fd1c5, 0 0 4px #4fd1c5;
+        opacity: 0.5;
+        text-shadow: none;
+    }
+
+    90% {
+        opacity: 0.5;
+        text-shadow: none;
     }
 
     100% {
-        opacity: 1;
-        text-shadow: 0 0 5px #fff, 0 0 12px #4fd1c5;
+        opacity: 0.8;
+        text-shadow: 0 0 5px #fff;
     }
 }
 
 /* Specific for Playground */
 #playground-h1 {
-    font-family: 'Doto', sans-serif;
+    width: 92%;
+    font-family: "Silkscreen", sans-serif;
     font-size: 5rem;
     text-align: center;
-    animation: Flicker 2s infinite;
+    animation: Flicker 4s infinite;
 }
 
 #playground-header {
@@ -88,7 +88,7 @@
 .broken-letter {
     display: inline-block;
     position: relative;
-    font-family: 'Doto', monospace;
+    /*font-family: 'Doto', monospace; */
     letter-spacing: -0.5em
 }
 
