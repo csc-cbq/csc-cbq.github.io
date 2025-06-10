@@ -78,11 +78,13 @@ nav a {
   border-radius: 5px;
   color: var(--text) !important;
   display: inline-block;
+  padding: .1rem 1rem;
   margin-right: 1rem;
   text-decoration: none;
   transition: .4s;
 }
 
+nav a:hover,
 nav a.current {
   color: var(--text) !important;
   background: var(--accent);
@@ -178,7 +180,7 @@ login-btn.current {
 	.nav-links.show {
 		display: flex;
 		position: absolute;
-	}
+  }
 }
 
 header,
@@ -235,4 +237,5 @@ h6 {
 }
 
 h2 {
+  margin: 4rem 0 -1.5rem 0;
 }
