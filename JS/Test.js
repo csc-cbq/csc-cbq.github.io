@@ -1,5 +1,4 @@
-﻿import { db } from "./firebase.js"; // Import Firestore instance
-import { getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+﻿import { db, getDoc, increment, updateDoc, collection, addDoc, doc, setDoc, query, where, getDocs } from "./firebase.js"; // Import Firestore instance
 console.log("Firestore is ready:", db);
 
 const validHashes = [

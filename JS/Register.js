@@ -1,28 +1,29 @@
-﻿import { db } from "./firebase.js"; // Import Firestore instance
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-console.log("Firestore is ready:", db);
+﻿import { auth, signInWithPopup, provider, onAuthStateChanged, signOut } from "./firebase.js"; // Import Firestore instance
 
+// Check login
+const loginBtn = document.getElementById("login-btn");
 
-//Register
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("playerForm").addEventListener("submit", async (event) => {
-        event.preventDefault(); // Stop page refresh
+onAuthStateChanged(auth, (user) => {
+	if (user) {
+		loginBtn.textContent = `${user.displayName || "User"} | Log out`;
+		loginBtn.onclick = () => {
+			signOut(auth).then(() => {
+				loginBtn.textContent = "Login";
+				location.reload(); // hoặc cập nhật lại UI theo cách khác
+			});
+		};
+	} else {
+		loginBtn.addEventListener("click", async () => {
+			try {
+				const result = await signInWithPopup(auth, provider);
+				const user = result.user;
+				alert(`✅ Đăng nhập thành công: ${user.displayName}`);
+				// Redirect hoặc lưu info gì đó
 
-        const playerName = document.getElementById("playerName").value;
-        const playerEmail = document.getElementById("playerEmail").value;
-
-        try {
-            const docRef = await addDoc(collection(db, "players"), {
-                name: playerName,
-                email: playerEmail,
-                timestamp: new Date()
-            });
-
-            alert(`✅ Registered! Your ID: ${docRef.id}`);
-            document.getElementById("playerForm").reset(); // Clear form
-        } catch (error) {
-            console.error("Error:", error);
-            alert("❌ Failed to register. Try again!");
-        }
-    });
+			} catch (error) {
+				console.error("❌ Lỗi đăng nhập:", error);
+				alert("Có lỗi xảy ra khi đăng nhập!");
+			}
+		});
+	}
 });

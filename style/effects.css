@@ -1,0 +1,125 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* Effects */
+.glow {
+    font-weight: bold;
+    text-align: center;
+    color: #ffff;
+    animation: glow 100s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px #63b3ed, 0 0 20px #63b3ed;
+    }
+
+    100% {
+        text-shadow: 0 0 10px #63b3ed, 0 0 20px #63b3ed;
+    }
+}
+
+@keyframes Flicker {
+    13% {
+        opacity: 0.3;
+        text-shadow: none;
+    }
+
+    35% {
+        opacity: 0.5;
+        text-shadow: 0 0 5px #4ff, 0 0 10px #4fd1c5;
+    }
+
+    45% {
+        opacity: 0.8;
+        text-shadow: 0 0 6px #fff, 0 0 12px #4fd1c5;
+    }
+
+    50% {
+        opacity: 0.6;
+        text-shadow: 0 0 2px #4fd1c5, 0 0 5px #4fd1c5;
+    }
+
+    55% {
+        opacity: 0.4;
+        text-shadow: 0 0 1px #fff, 0 0 2px #4fd1c5;
+    }
+
+    60% {
+        opacity: 1;
+        text-shadow: 0 0 8px #fff, 0 0 18px #4fd1c5;
+    }
+
+    70% {
+        opacity: 0.3;
+        text-shadow: 0 0 4px #fff;
+    }
+
+
+    80% {
+        opacity: 1;
+        text-shadow: 0 0 10px #4ff, 0 0 20px #4fd1c5;
+    }
+
+    85% {
+        opacity: 1;
+        text-shadow: 0 0 2px #4fd1c5, 0 0 4px #4fd1c5;
+    }
+
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 5px #fff, 0 0 12px #4fd1c5;
+    }
+}
+
+/* Specific for Playground */
+#playground-h1 {
+    font-family: 'Doto', sans-serif;
+    font-size: 5rem;
+    text-align: center;
+    animation: Flicker 2s infinite;
+}
+
+#playground-header {
+    text-align: center;
+    animation: Flicker 5s infinite;
+}
+
+/* Broken Sign */
+.broken-letter {
+    display: inline-block;
+    position: relative;
+    font-family: 'Doto', monospace;
+    letter-spacing: -0.5em
+}
+
+.broken-1 {
+    transform: translate(-5px, 25px) rotate(20deg);
+}
+
+.broken-2 {
+    transform: translate(2px, -5px) rotate(5deg);
+}
+
+.broken-3 {
+    transform: translate(-1px, 3px) rotate(-1.5deg);
+}
+
+.broken-4 {
+    transform: translate(1px, -7px) rotate(3deg);
+}
+
+.broken-5 {
+    transform: translate(0px, -4px) rotate(-0.5deg);
+}
+
+/* Optional: flicker shadow, but not animated */
+.broken-letter::after {
+    content: attr(data-letter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #000000;
+    opacity: 0.1;
+    transform: translate(1px, -1px);
+    pointer-events: none;
+}
