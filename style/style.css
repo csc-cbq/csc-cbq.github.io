@@ -227,7 +227,7 @@ img {
 
 .notice {
   margin: 0 auto 0 auto;
-  max-width: 50rem;
+  max-width: 50em;
   width: 60%;
   border: 2px solid;
   padding: 1rem 1.5rem;
@@ -235,8 +235,6 @@ img {
   text-align: center;
   word-wrap: break-word; /* Break long words into multiple lines */
   overflow-wrap: break-word; /* Ensure wrapping of long words */
-  
-  max-width: 100%; /* Ensure it doesn't overflow */
   box-sizing: border-box; /* Ensure padding and border are considered in width */
 }
 
