@@ -33,6 +33,7 @@ async function submitFlag(user) {
     // Player Collection
     const playerRef = doc(db, "players", user.uid);
     const flagCoRef = collection(playerRef, "flag_collection");
+    const flags = flagCoRef.size
 
     // Check if the playerCode already exists in the flag collection
     const q = query(flagCoRef, where("code", "==", playerCode));
@@ -58,7 +59,7 @@ async function submitFlag(user) {
             if (docSnap.exists()) {
                 await updateDoc(playerRef, {
                     Name: user.displayName,
-                    flagCount: increment(1),
+                    flagCount: flags,
                     timestamp: new Date(),
                 });
             } else { // In case flagCount field didn't exist
