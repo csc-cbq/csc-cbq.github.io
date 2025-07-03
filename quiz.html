@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <script type="module" src="JS/Register.js"></script>
+  <script type="module" src="JS/base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAO BA QUAT SOFTWARE CLUB</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/style_nav.css">
+  <link rel="stylesheet" href="style/color.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="asserts/img/favicon.png" />
+  <style>
+	.quiz-box {
+	background: #000;
+	padding: 20px;
+	margin: 40px auto;
+	max-width: 600px;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	font-size: 1.1em;
+	}
+
+	.quiz-box h2 {
+	text-align: center;
+	padding: 0 0 1em 0;
+	}
+
+	.choices button, .choices input[type="text"] {
+	display: block;
+	margin: 10px 0;
+	padding: 10px;
+	width: 100%;
+	font-size: 1em;
+	}
+
+	.result {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-top: 20px;
+	}
+  </style>
+</head>
+
+<body>
+  <a name="top"></a>
+  <header>
+	<nav class="navbar" id="navbar">
+	  <button class="toggle-btn" type="button">☰</button>
+	  <div id="nav-overlay"></div>
+	  <div id="nav-overlay"></div>
+	  <ul class="nav-links" id="navLinks">
+		<li><a href="index.html">Home</a></li>
+		<li><a href="timeline.html">Timeline</a></li>
+		<li><a href="Leaderboard.html">Leaderboard</a></li>
+		<li><a href="https://docs.google.com/document/d/1A5Pi5owYCUh_XWoLyTgkWcFLn8jkvNDUAUGwW40l-q0/edit?usp=sharing">Nội quy</a></li>
+	  </ul>
+	  <button id="login-btn">Login</button>
+	</nav>
+	<h1>CAO BA QUAT SOFTWARE CLUB</h1>
+  </header>
+
+  <main>
+	<div class="quiz-box">
+	  <h2>🎯 Quick Quiz</h2>
+	  <div class="question" id="question"></div>
+	  <div class="choices" id="choices"></div>
+	  <div class="result" id="result"></div>
+	  <button id="next-btn" style="margin-top: 20px; width: 100%; padding: 10px; font-size: 1em;">Câu hỏi khác 🔄</button>
+	</div>
+  </main>
+
+  <footer>
+	<p>&copy; 2023 Cao Ba Quat SOFTWARE Club</p>
+	<p>Code khó ư, gia nhập CSC ngay!</p>
+	<p>
+	  <b>Liên hệ: </b><a href="mailto:caobaquatsoftwareclub@gmail.com">caobaquatsoftwareclub@gmail.com</a>
+	  <div class="social-media">
+		<a target="_blank" href="https://facebook.com/csc.cbq"><i class="fa fa-facebook"></i></a>
+		<a target="_blank" href="https://instagram.com/csc.cbq"><i class="fa fa-instagram"></i></a>
+		<a target="_blank" href="https://github.com/csc-cbq"><i class="fa fa-github"></i></a>
+		<br>
+	  </div>
+	<p><a href="#top" class="centre">Top</a></p>
+  </footer>
+
+  <div class="notice">
+	<span style="font-size: 1rem">Minigame cho những bạn tò mò xem đến cuối😉🎁</span> <br /><br />
+	<p>ᓭ¦̇/ℸ ̣ᒷᒷリ ᒲᒷᔑリᓭ ⍑ᒷ̇/</p>
+	<p>44 6f 20 79 6f 75 20 6b 6e 6f 77 3a 20 22 3d 3d 22 20 6f 66 74 65 6e 20 73 75 67 67 65 73 74 73 20 74 68 65 20 64 61 74 61 20 66 6f 72 6d 61 74 20 69 73 20 42 61 73 65 36 34 2e</p>
+	<p>aHR0cHM6Ly9wb2xhcmlzMjg1My5naXRodWIuaW8vcGxheWdyb3VuZC5odG1sIEkgbWVhbiB5b3UgY2FuIGVhc2lseSBjaGVjayB0aGUgc291cmNlIGNvZGUsIGJ1dCBlM2RvWVhSelgzUm9aVjltZFc1ZmFXNWZkR2hoZEgwPQ==</p>
+	<p>∑ZTIgYTAgYjggZTIgYTAgOGEgZTIgYTAgOGUgZTIgYTAgYjggZTIgYTAgYTcgZTIgYTAgODEgZTIgYTAgODcgZTIgYTAgOGEgZTIgYTAgOTk=</p>
+  </div>
+
+  <script>
+	const questions = [
+	  {
+		type: "text",
+		code: '<h1> This is a heading </H1>',
+		q: "Chỉnh sửa lỗi sai ở đoạn code trên",
+		answer: "</h1>"
+	  },
+	  {
+		type: "text",
+		code: "\<body\> \n\<p\>Welcome to my site\<\/p\> \n\<p\>Enjoy your stay\<p\> \n\<\/body\>",
+		q: "Chỉnh sửa lỗi sai trong đoạn code trên",
+		answer: "</p>"
+	  },
+	  {
+		type: "text",
+		code: 'for i in range(5)_ \nprint(i)',
+		q: "Hoàn thành đoạn code ở bên trên",
+		answer: ":"
+	  },
+	  {
+		type: "text",
+		q: "Cú pháp đúng để lặp lại một khối lệnh 5 lần trong Python là: ___",
+		answer: "for i in range(5):"
+	  },
+	  {
+		type: "mcq",
+		q: "Chữ cái đầu tiên trên bàn phím máy tính (góc trái phía trên) là gì?",
+		options: ["A", "Q", "Z", "W"],
+		answer: 1
+	  },
+	  {
+		type: "mcq",
+		q: "Trong HTML, để xuống dòng ta sử dụng thẻ nào?",
+		options: ["<p>", "<h1>", "<br>", "<div>"],
+		answer: 2
+	  },
+	  {
+		type: "mcq",
+		q: "Thẻ nào trong HTML được dùng để hiển thị dòng chữ dưới dạng tiêu đề lớn?",
+		options: ["<title>", "<p>", "<h1>", "<div>"],
+		answer: 2
+	  },
+	  {
+		type: "mcq",
+		q: "Biểu tượng chiếc thùng rác trên desktop Windows dùng để làm gì?",
+		options: ["Chạy phần mềm", "Lưu file quan trọng", "Chứa file đã xóa", "Tăng tốc máy tính"],
+		answer: 2
+	  },
+	  {
+		type: "mcq",
+		q: "Ngôn ngữ nào chủ yếu dùng để tạo hiệu ứng động trên website?",
+		options: ["HTML", "CSS", "JavaScript", "PHP"],
+		answer: 2
+	  },
+	  {
+		type: "text",
+		q: "Python được phát hành lần đầu tiên vào năm ___",
+		answer: "1991"
+	  },
+	  {
+		type: "mcq",
+		q: "Trong Python, lỗi gì sẽ xảy ra khi truy cập phần tử không tồn tại trong danh sách?",
+		options: ["ValueError", "IndexError", "SyntaxError", "KeyError"],
+		answer: 1
+	  },
+	  {
+		type: "text",
+		q: "Câu lệnh dùng để in ra nội dung trong Python là ___()",
+		answer: "print"
+	  },
+	  {
+		type: "mcq",
+		q: "Ai là người sáng lập World Wide Web (WWW)?",
+		options: ["Steve Jobs", "Tim Berners-Lee", "Larry Page", "Linus Torvalds"],
+		answer: 1
+	  },
+	  {
+		type: "mcq",
+		q: "Một byte bằng bao nhiêu bit?",
+		options: ["4", "8", "16", "32"],
+		answer: 1
+	  },
+	  {
+		type: "mcq",
+		q: "Ai là người sáng lập hệ điều hành Linux?",
+		options: ["Guido van Rossum", "Linus Torvalds", "Tim Berners-Lee", "Steve Jobs"],
+		answer: 1
+	  },
+	  {
+		type: "text",
+		q: "Tên mã hóa dùng Caesar Shift lùi 3 ký tự là ___ mã hóa.",
+		answer: "Caesar"
+	  },
+	  {
+		type: "text",
+		q: "Toán tử so sánh bằng trong C++ là ___",
+		answer: "=="
+	  },
+	  {
+		type: "text",
+		q: "Tên đầy đủ của RAM là ___ ___ ___",
+		answer: "Random Access Memory"
+	  },
+	  {
+		type: "mcq",
+		q: "HTML dùng để làm gì trong phát triển web?",
+		options: ["Tạo hiệu ứng động", "Xử lý cơ sở dữ liệu", "Tạo cấu trúc trang web", "Thiết kế logo"],
+		answer: 2
+	  },
+	  {
+		type: "text",
+		q: "IDE là viết tắt của ___ (viết tắt tiếng Anh).",
+		answer: "IDE"
+	  },
+	  {
+		type: "mcq",
+		q: "Ai là người sáng lập ngôn ngữ lập trình Python?",
+		options: ["Mark Zuckerberg", "Elon Musk", "Guido van Rossum", "Bill Gates"],
+		answer: 2
+	  },
+	];
+
+	const q = questions[Math.floor(Math.random() * questions.length)];
+	if (q.code) {
+	  const pre = document.createElement("pre");
+	  pre.style.background = '#111';
+	  pre.style.color = '#0f0';
+	  pre.style.padding = '10px';
+	  pre.style.overflowX = 'auto';
+	  pre.textContent = q.code;
+	  document.getElementById("question").appendChild(pre);
+	}
+	const qtext = document.createElement("div");
+	qtext.textContent = q.q;
+	document.getElementById("question").appendChild(qtext);
+
+	if (q.type === "mcq") {
+	  q.options.forEach((opt, i) => {
+		const btn = document.createElement("button");
+		btn.textContent = opt;
+		btn.onclick = () => {
+		  const res = document.getElementById("result");
+		  if (i === q.answer) {
+			res.innerHTML = "✅ Chính xác! Bạn nhận được một phần quà nhỏ 🎁";
+		  } else {
+			res.innerHTML = "❌ Sai rồi! Hãy thử lại sau.";
+		  }
+		};
+		document.getElementById("choices").appendChild(btn);
+	  });
+	} else if (q.type === "text") {
+	  const input = document.createElement("input");
+	  input.type = "text";
+	  input.placeholder = "Nhập câu trả lời...";
+	  const submit = document.createElement("button");
+	  submit.textContent = "Gửi";
+	  submit.onclick = () => {
+		const res = document.getElementById("result");
+		if (input.value.trim().toLowerCase() === q.answer.toLowerCase()) {
+		  res.innerHTML = "✅ Chính xác! Bạn nhận được một phần quà nhỏ 🎁";
+		} else {
+		  res.innerHTML = "❌ Sai rồi! Hãy thử lại sau.";
+		}
+	  };
+	  document.getElementById("choices").appendChild(input);
+	  document.getElementById("choices").appendChild(submit);
+      document.getElementById("next-btn").onclick = () => window.location.reload();
+	}
+  </script>
+</body>
+</html>
