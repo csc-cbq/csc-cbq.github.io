@@ -262,7 +262,59 @@
 	  };
 	  document.getElementById("choices").appendChild(input);
 	  document.getElementById("choices").appendChild(submit);
-      document.getElementById("next-btn").onclick = () => window.location.reload();
+
+      document.getElementById("next-btn").onclick = () => {
+        // Clear previous content
+        document.getElementById("question").innerHTML = "";
+        document.getElementById("choices").innerHTML = "";
+        document.getElementById("result").innerHTML = "";
+
+        const q = questions[Math.floor(Math.random() * questions.length)];
+        if (q.code) {
+          const pre = document.createElement("pre");
+          pre.style.background = '#111';
+          pre.style.color = '#0f0';
+          pre.style.padding = '10px';
+          pre.style.overflowX = 'auto';
+          pre.textContent = q.code;
+          document.getElementById("question").appendChild(pre);
+        }
+        const qtext = document.createElement("div");
+        qtext.textContent = q.q;
+        document.getElementById("question").appendChild(qtext);
+
+        if (q.type === "mcq") {
+          q.options.forEach((opt, i) => {
+            const btn = document.createElement("button");
+            btn.textContent = opt;
+            btn.onclick = () => {
+              const res = document.getElementById("result");
+              if (i === q.answer) {
+                res.innerHTML = "✅ Chính xác! Bạn nhận được một phần quà nhỏ 🎁";
+              } else {
+                res.innerHTML = "❌ Sai rồi! Hãy thử lại sau.";
+              }
+            };
+            document.getElementById("choices").appendChild(btn);
+          });
+        } else if (q.type === "text") {
+          const input = document.createElement("input");
+          input.type = "text";
+          input.placeholder = "Nhập câu trả lời...";
+          const submit = document.createElement("button");
+          submit.textContent = "Gửi";
+          submit.onclick = () => {
+            const res = document.getElementById("result");
+            if (input.value.trim().toLowerCase() === q.answer.toLowerCase()) {
+              res.innerHTML = "✅ Chính xác! Bạn nhận được một phần quà nhỏ 🎁";
+            } else {
+              res.innerHTML = "❌ Sai rồi! Hãy thử lại sau.";
+            }
+          };
+          document.getElementById("choices").appendChild(input);
+          document.getElementById("choices").appendChild(submit);
+        }
+      };
 	}
   </script>
 </body>
