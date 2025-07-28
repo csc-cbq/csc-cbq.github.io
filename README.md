@@ -18,6 +18,8 @@
 - Hosting: [GitHub Pages]
 - Version Control: Git
 
+---
+
 ## 3. Roadmap
 
 - Add upcoming events section
