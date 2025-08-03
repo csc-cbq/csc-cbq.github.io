@@ -3,9 +3,12 @@
 // Initialization
 let rank = 1;
 
-// Admin's ID list
+// Exception ID list
 const admin = [
 	"jUfXLiPKZIbgQmmdmWMzFcGh5fw2",
+];
+const bot = [
+	"SVHnMK5BEZWMR76AUJC4z8LbstT2",
 ];
 
 async function loadLeaderboard() {
@@ -25,14 +28,22 @@ async function loadLeaderboard() {
 		
 		const row = document.createElement("tr");
 
-		// If user (document) is admin
+		// If user is (not) from exception list
 		if (admin.includes(docid)) {
 			name = `${data.Name} (Admin)`;
 			row.innerHTML = `
-			<th></th>
-			<th>${name}</th>
-			<th>${data.flagCount || 0}</th>
-			`;
+				<th></th>
+				<th>${name}</th>
+				<th>${data.flagCount || 0}</th>
+				`;
+			tbody.appendChild(row);
+		} else if (bot.includes(docid)) {
+			name = `${data.Name}`;
+			row.innerHTML = `
+				<th></th>
+				<th>${name}</th>
+				<th>${data.flagCount || 0}</th>
+				`;
 			tbody.appendChild(row);
 		} else { // Adding entries into the table 
 			row.innerHTML = `
